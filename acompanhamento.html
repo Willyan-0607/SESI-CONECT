@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acompanhamento do Aluno - SESI Conect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ESTILIZAÇÃO GERAL E FUNDO --- */
+        body {
+            background-color: #f7f9fc;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- CABEÇALHO --- */
+        .top-bar {
+            background-color: #1E2A5C;
+            color: white;
+            padding: 15px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: absolute;
+            left: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .logo-img {
+            width: 300px; 
+            height: auto;
+        }
+
+       
+        h1.page-title { font-size: 2.2rem; font-weight: 900; margin: 0; color: white; }
+
+        /* --- CÍRCULOS DECORATIVOS --- */
+        .graphic-circle { position: absolute; border-radius: 50%; z-index: 0; }
+        .top-left-circle { width: 350px; height: 350px; top: -120px; left: -150px; background-color: #00838f; }
+        .bottom-right-circle { width: 500px; height: 500px; bottom: -250px; right: -250px; background-color: #26a69a; }
+
+        /* --- CONTEÚDO PRINCIPAL (CARDS) --- */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            padding: 50px 20px;
+            padding-top: 70px;
+            position: relative;
+            z-index: 1;
+            /* CORREÇÃO: Adiciona espaço no final para não ser coberto pelo rodapé */
+            padding-bottom: 120px; 
+        }
+
+        .info-card {
+            background-color: #373f51;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            width: 350px;
+            text-align: center;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.25);
+        }
+
+        .card-image-container { width: 100%; height: 200px; overflow: hidden; border-top-left-radius: 20px; border-top-right-radius: 20px; }
+        .card-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+        .info-card:hover .card-image { transform: scale(1.05); }
+        .card-title { color: white; font-size: 1.5rem; font-weight: 600; padding: 25px 20px; margin: 0; }
+
+        /* --- RODAPÉ --- */
+        .footer-message {
+            background-color: #1E2A5C;
+            color: white;
+            padding: 20px 5%;
+            text-align: center;
+            font-size: 1rem;
+            line-height: 1.6;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+            /* CORREÇÃO: Fixa o rodapé na parte inferior da tela */
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 2;
+        }
+          /* --- RESPONSIVIDADE --- */
+    @media (max-width: 768px) {
+        .top-bar {
+            flex-direction: column;
+            gap: 10px;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .logo-container {
+            position: static;
+            transform: none;
+            margin-bottom: 10px;
+        }
+
+        h1.page-title {
+            font-size: 1.8rem;
+        }
+
+        .main-content {
+            flex-direction: column;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .info-card {
+            width: 90%;
+            max-width: 350px;
+        }
+    }
+    </style>
+</head>
+<body>
+    
+    <div class="graphic-circle top-left-circle"></div>
+    <div class="graphic-circle bottom-right-circle"></div>
+
+    <div class="top-bar">
+        <div class="logo-container">
+            <img src="IMG/image-Photoroom (19).png" alt="SESI Conect Logo" class="logo-img">
+            <div class="logo-text">
+               
+            </div>
+        </div>
+        <h1 class="page-title">Acompanhamento do aluno</h1>
+    </div>
+
+    <div class="main-content">
+        <div class="info-card">
+            <div class="card-image-container">
+               <a href="relatorio.html"> <img src="IMG/Captura de tela 2025-09-24 162707.png" alt="Relatório Pedagógico" class="card-image"></a>
+            </div>
+            <p class="card-title">Relatório Pedagógico</p>
+        </div>
+        <div class="info-card">
+            <div class="card-image-container">
+               <a href="chatcoordenação.html"> <img src="IMG/Captura de tela 2025-09-24 162728.png" alt="Contato com a Coordenação" class="card-image"></a>
+            </div>
+            <p class="card-title">Contato com a Coordenação</p>
+        </div>
+    </div>
+
+    <div class="footer-message">
+        "Nosso objetivo é que cada responsável acompanhe de perto o desenvolvimento do estudante, fortalecendo a parceria entre família e escola."
+    </div>
+
+</body>
+</html>

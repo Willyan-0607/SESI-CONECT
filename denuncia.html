@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Denúncias de Bullying</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+        body {
+            background-color: #f7f9fc;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .graphic-circle {
+            position: absolute;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .top-left-circle {
+            width: 350px;
+            height: 350px;
+            top: -120px;
+            left: -150px;
+            background-color: #00838f;
+        }
+
+        .bottom-right-circle {
+            width: 500px;
+            height: 500px;
+            bottom: -250px;
+            right: -250px;
+            background-color: #26a69a;
+        }
+
+        .main-content {
+            z-index: 1;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        h1.main-title {
+            font-size: 2.8rem;
+            color: #37474f;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        p.subtitle {
+            font-size: 1.1rem;
+            color: #546e7a;
+            margin-bottom: 2.5rem;
+        }
+
+        .report-container {
+            background-color: #373f51;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 650px;
+            color: #f0f0f0;
+            text-align: left;
+            margin: 0 auto;
+        }
+        
+        /* --- NOVA ESTILIZAÇÃO PARA O CHECKBOX E CAMPO DE NOME --- */
+
+        .anonymous-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+        }
+        
+        #anonymous-checkbox {
+            width: 18px;
+            height: 18px;
+            margin-right: 12px;
+            cursor: pointer;
+        }
+
+        .anonymous-option label {
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            user-select: none; /* Impede que o texto seja selecionado ao clicar */
+        }
+        
+        .name-field-wrapper {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, margin-top 0.5s ease-in-out; /* Animação suave */
+        }
+        
+        .name-field-wrapper.visible {
+            max-height: 100px; /* Altura suficiente para o campo aparecer */
+            margin-top: 1rem;
+        }
+
+        #name-input {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: none;
+            background-color: rgba(0, 0, 0, 0.25);
+            color: #ffffff;
+            font-size: 1rem;
+            outline: none;
+            border-radius: 10px;
+            box-sizing: border-box; /* Garante que padding não afete a largura total */
+        }
+        
+        #name-input::placeholder {
+            color: #95a5a6;
+        }
+
+        .anonymous-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: #bdc3c7;
+        }
+
+        .report-form {
+            display: flex;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.25);
+            border-radius: 12px;
+            padding: 5px;
+            margin-top: 1rem;
+        }
+
+        #case-input {
+            flex-grow: 1;
+            padding: 0.9rem 1rem;
+            border: none;
+            background-color: transparent;
+            color: #ffffff;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        #case-input::placeholder {
+            color: #95a5a6;
+        }
+
+        #submit-button {
+            padding: 0.9rem 2rem;
+            border: none;
+            background-color: #673ab7;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #submit-button:hover {
+            background-color: #7e57c2;
+            transform: scale(1.05);
+        }
+         /* --- RESPONSIVIDADE --- */
+    @media (max-width: 768px) {
+        .main-content {
+            padding: 1rem;
+        }
+        h1.main-title {
+            font-size: 2rem;
+        }
+        p.subtitle {
+            font-size: 1rem;
+        }
+        .report-container {
+            padding: 1.5rem;
+        }
+        .graphic-circle {
+            display: none; /* Esconde os círculos decorativos */
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <div class="graphic-circle top-left-circle"></div>
+    <div class="graphic-circle bottom-right-circle"></div>
+
+    <div class="main-content">
+        <h1 class="main-title">Denúncias de bullying</h1>
+        <p class="subtitle">Denuncie bullying com segurança e eficiência.</p>
+
+        <div class="report-container">
+            
+            <div class="anonymous-option">
+                <input type="checkbox" id="anonymous-checkbox" checked>
+                <label for="anonymous-checkbox">Permanecer anônimo (a)</label>
+            </div>
+            
+            <div id="name-field" class="name-field-wrapper">
+                <input type="text" id="name-input" placeholder="Digite seu nome (opcional)">
+            </div>
+
+            <p class="anonymous-text">
+                Suas informações serão totalmente sigilosas. Caso escolha se identificar, seu nome só será compartilhado com a coordenação pedagógica.
+            </p>
+            
+            <div class="report-form" id="reportForm">
+                <input type="text" id="case-input" placeholder="escreva seu caso:">
+                <button id="submit-button" type="button">Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const anonymousCheckbox = document.getElementById('anonymous-checkbox');
+            const nameField = document.getElementById('name-field');
+            const nameInput = document.getElementById('name-input');
+            const submitButton = document.getElementById('submit-button');
+            const caseInput = document.getElementById('case-input');
+
+            // --- LÓGICA PARA EXIBIR/ESCONDER O CAMPO DE NOME ---
+            anonymousCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    // Se o checkbox ESTÁ MARCADO, esconde o campo de nome
+                    nameField.classList.remove('visible');
+                } else {
+                    // Se o checkbox NÃO ESTÁ MARCADO, mostra o campo de nome
+                    nameField.classList.add('visible');
+                }
+            });
+
+            // --- LÓGICA ATUALIZADA PARA O ENVIO DO FORMULÁRIO ---
+            submitButton.addEventListener('click', function() {
+                const userReport = caseInput.value;
+                const isAnonymous = anonymousCheckbox.checked;
+                const userName = nameInput.value;
+
+                if (userReport.trim() === '') {
+                    alert('Por favor, descreva o seu caso antes de enviar.');
+                    return; // Interrompe a função aqui
+                }
+
+                // Simulação de envio
+                if (isAnonymous) {
+                    console.log('Denúncia anônima enviada:', userReport);
+                    alert('Sua denúncia foi enviada com sucesso e de forma anônima. Agradecemos sua coragem!');
+                } else {
+                    console.log(`Denúncia enviada por ${userName || 'Não informado'}:`, userReport);
+                    alert(`Obrigado, ${userName || 'aluno(a)'}! Sua denúncia foi enviada com sucesso. A coordenação poderá entrar em contato se necessário.`);
+                }
+
+                // Limpa os campos após o envio
+                caseInput.value = '';
+                nameInput.value = '';
+            });
+        });
+    </script>
+
+</body>
+</html>
