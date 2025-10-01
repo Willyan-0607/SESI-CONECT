@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório Pedagógico - SESI Conect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ESTILIZAÇÃO GERAL E FUNDO --- */
+        body {
+            background-color: #f7f9fc; /* Fundo claro padrão */
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden; /* Evita scroll horizontal */
+            position: relative;
+        }
+
+        /* --- CÍRCULOS DECORATIVOS --- */
+        .graphic-circle {
+            position: absolute;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .top-left-circle {
+            width: 350px;
+            height: 350px;
+            top: -120px;
+            left: -150px;
+            background-color: #00838f;
+        }
+
+        .bottom-right-circle {
+            width: 500px;
+            height: 500px;
+            bottom: -250px;
+            right: -250px;
+            background-color: #26a69a;
+        }
+
+        /* --- CABEÇALHO DA PÁGINA --- */
+        .page-header {
+            background-color: #1E2A5C; /* Azul escuro do tema */
+            color: white;
+            padding: 25px 5%;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-header h1 {
+            margin: 0;
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        /* --- CONTAINER PRINCIPAL DO CONTEÚDO --- */
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Alinha os itens no topo */
+            gap: 40px;
+            padding: 50px 5%;
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- COLUNA ESQUERDA (OCORRÊNCIAS) --- */
+        .occurrences-column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            flex-basis: 50%; /* Ocupa metade do espaço */
+            max-width: 450px;
+        }
+
+        .occurrence-card {
+            background-color: #2F4A8A; /* Azul médio do tema */
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .occurrence-card h2 {
+            margin: 0 0 15px 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #4A5A8A;
+        }
+
+        .occurrence-card .detail {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        /* Cor específica para o texto de "Português" */
+        .detail.portugues-detail {
+            color: #dbdef1; /* Um tom de vermelho claro para destaque */
+        }
+        
+        /* Cor específica para o texto de "Espanhol" */
+        .detail.espanhol-detail {
+            color: #dbdef1; /* Um tom de azul/índigo claro para destaque */
+        }
+
+        /* --- COLUNA DIREITA (RELATÓRIO PRINCIPAL) --- */
+        .report-column {
+            flex-basis: 50%; /* Ocupa a outra metade */
+            max-width: 600px;
+        }
+
+        .main-report-card {
+            background-color: #f0f4f8; /* Um fundo bem claro, quase branco */
+            border: 4px solid #1E2A5C; /* Borda azul escura sólida */
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .main-report-card h2 {
+            margin: 0 0 20px 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1E2A5C;
+        }
+
+        .main-report-card p {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #333;
+        }
+ /* --- RESPONSIVIDADE --- */
+    @media (max-width: 992px) {
+        .main-container {
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem;
+        }
+        .occurrences-column,
+        .report-column {
+            width: 100%;
+            max-width: 600px;
+        }
+    }
+    @media (max-width: 768px) {
+        .page-header h1 {
+            font-size: 2.2rem;
+        }
+        .main-container {
+            padding: 1rem;
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <div class="graphic-circle top-left-circle"></div>
+    <div class="graphic-circle bottom-right-circle"></div>
+
+    <header class="page-header">
+        <h1>Relatório Pedagógico</h1>
+    </header>
+
+    <main class="main-container">
+
+        <section class="occurrences-column">
+            <div class="occurrence-card">
+                <h2>Ocorrência da professor(a) de Português</h2>
+                <div class="detail portugues-detail">
+                    Não tem feito a atividade de casa
+                </div>
+            </div>
+
+            <div class="occurrence-card">
+                <h2>Ocorrência da professor(a) de Espanhol</h2>
+                <div class="detail espanhol-detail">
+                    Não trouxe o material didático
+                </div>
+            </div>
+        </section>
+
+        <section class="report-column">
+            <div class="main-report-card">
+                <h2>Relatório do(a) professor(a) responsável da turma:</h2>
+                <p>
+                    Neste semestre, o grande avanço nas disciplinas de Física, Química e Biologia foi claro. O estudante se mostrou participativo e conseguiu aprender bem os conteúdos das aulas. Em Geografia, ainda há certas dificuldades na interpretação de mapas e na compreensão de alguns temas. Mas, com um pouco de prática e apoio, esses desafios serão superados.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ChatBox - SESI Conect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ESTILIZAÇÃO GERAL E FUNDO --- */
+        body {
+            background-color: #f7f9fc;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .graphic-circle {
+            position: absolute;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .top-left-circle {
+            width: 350px;
+            height: 350px;
+            top: -120px;
+            left: -150px;
+            background-color: #00838f;
+        }
+
+        .bottom-right-circle {
+            width: 500px;
+            height: 500px;
+            bottom: -250px;
+            right: -250px;
+            background-color: #26a69a;
+        }
+
+        /* --- CONTAINER PRINCIPAL DO CHAT --- */
+        .chat-container {
+            width: 420px;
+            height: 650px;
+            background-color: #373f51;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            z-index: 1;
+        }
+
+        /* --- CABEÇALHO DO CHAT --- */
+        .chat-header {
+            background-color: #1E2A5C;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* --- CAIXA DE MENSAGENS --- */
+        .chat-box {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* --- ESTILO DAS MENSAGENS --- */
+        .message {
+            padding: 12px 18px;
+            border-radius: 18px;
+            max-width: 80%;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+
+        .user {
+            background-color: #673ab7;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .bot {
+            background-color: #4A5A8A;
+            color: #f0f0f0;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        /* --- ENTRADA DE TEXTO E BOTÃO --- */
+        .chat-input {
+            display: flex;
+            border-top: 1px solid #4A5A8A;
+            background-color: #2c3543;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            font-size: 1rem;
+            background-color: transparent;
+            color: white;
+            outline: none;
+        }
+        
+        .chat-input input::placeholder {
+            color: #95a5a6;
+        }
+
+        .chat-input button {
+            background-color: #673ab7;
+            color: white;
+            border: none;
+            padding: 0 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .chat-input button:hover {
+            background-color: #7e57c2;
+        }
+
+        /* --- ALERTA SENSÍVEL --- */
+        .alert-box {
+            background-color: #00838f;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .alert-box button {
+            margin-top: 10px;
+            background-color: #f7f9fc;
+            color: #00838f;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .alert-box button:hover {
+            background-color: #d9e3e7;
+        }
+          /* --- RESPONSIVIDADE --- */
+    @media (max-width: 480px) {
+        body {
+            align-items: flex-start; /* Alinha o chat no topo */
+            padding-top: 20px;
+        }
+        .chat-container {
+            width: 95%;
+            height: 90vh; /* Ocupa a maior parte da altura da tela */
+            border-radius: 15px;
+        }
+        .graphic-circle {
+            display: none; /* Esconde os círculos decorativos */
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="graphic-circle top-left-circle"></div>
+    <div class="graphic-circle bottom-right-circle"></div>
+
+    <div class="chat-container">
+        <div class="chat-header">💬 ChatBox - SESI Conect</div>
+        <div class="chat-box" id="chatBox">
+            <div class="message bot">Olá! Eu sou o ConectBox, chat de ajuda com respostas automáticas. Como posso te ajudar hoje?</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="Digite sua mensagem..." autocomplete="off"/>
+            <button onclick="sendMessage()">Enviar</button>
+        </div>
+        <div id="alertBox" class="alert-box" style="display: none;">
+            ⚠️ Esta conversa pode estar ficando delicada. Procure a ajuda do Psicólogo Escolar ou em um lugar seguro (CVV - Centro de Valorização da Vida): <br />
+            <button onclick="contactHelp()">Contactar CVV</button>
+        </div>
+    </div>
+
+    <script>
+        // --- SEU CÓDIGO JAVASCRIPT ADAPTADO E INTEGRADO ---
+
+        const chatBox = document.getElementById("chatBox");
+        const userInput = document.getElementById("userInput");
+        const alertBox = document.getElementById("alertBox");
+
+        // Lista de palavras sensíveis
+        const sensitiveWords = [
+            "depressivo", "suicídio", "morte",
+            "sofrendo", "me cortar", "não aguento",
+            "sem saída", "me machucar", "desistir", 
+            "suicida", "suicidar", "matar",
+            "morrer"
+        ];
+
+        // Gera resposta com base na mensagem do usuário
+        function generateResponse(message) {
+            const msg = message.toLowerCase();
+
+            // Verifica se há conteúdo sensível
+            const hasSensitive = sensitiveWords.some(word => msg.includes(word));
+            if (hasSensitive) {
+                showAlertBox();
+                return "Percebi que o assunto é delicado. Lembre-se que você não está sozinho(a). Conversar com um profissional pode trazer mais conforto e segurança. 💙";
+            }
+
+            // Respostas por contexto
+            if (msg.includes("estudo") || msg.includes("estudar")) {
+                return "Estudar demais cansa mesmo. Já tentou usar a técnica Pomodoro? Fazer pequenas pausas pode ajudar a clarear a mente.";
+            }
+
+            if (msg.includes("cansado") || msg.includes("exausto")) {
+                return "Poxa... às vezes a gente só precisa de um descanso de verdade. Respeitar os limites do nosso corpo é muito importante.";
+            }
+
+            if (msg.includes("sozinho") || msg.includes("solidão")) {
+                return "É difícil se sentir assim... Às vezes, compartilhar o que sentimos com alguém de confiança pode aliviar esse peso.";
+            }
+
+            if (msg.includes("feliz") || msg.includes("legal")) {
+                return "Aee, que massa! Fico feliz por você. O que está te fazendo bem?";
+            }
+
+            if (msg.includes("confuso") || msg.includes("não sei")) {
+                return "Tudo bem ficar confuso às vezes. Não precisamos ter todas as respostas. Dê um passo de cada vez.";
+            }
+
+            if (msg.includes("ansioso") || msg.includes("ansiosa")) {
+                return "A ansiedade pode ser desafiadora. Tente focar na sua respiração por um minuto. Inspirar e expirar lentamente pode ajudar a acalmar.";
+            }
+            
+            if (msg.includes("oi") || msg.includes("olá") || msg.includes("ola")) {
+                return "Olá! Estou aqui para conversar. Sobre o que você gostaria de falar?";
+            }
+
+            if (msg.endsWith("?")) {
+                return "Essa é uma ótima pergunta. O que você acha sobre isso?";
+            }
+            
+            return "Entendi... se sentir à vontade, pode me falar mais sobre isso.";
+        }
+
+        // Envia a mensagem do usuário e gera resposta do bot
+        function sendMessage() {
+            const msg = userInput.value.trim();
+            if (msg === "") return;
+
+            addMessage("user", msg);
+            userInput.value = "";
+
+            const response = generateResponse(msg);
+
+            // Adiciona um pequeno delay para simular que o bot está "digitando"
+            setTimeout(() => {
+                addMessage("bot", response);
+            }, 600 + Math.random() * 800);
+        }
+
+        // Adiciona a mensagem na interface do chat
+        function addMessage(type, text) {
+            const messageEl = document.createElement("div");
+            messageEl.classList.add("message", type);
+            messageEl.innerText = text;
+            chatBox.appendChild(messageEl);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Mostra o botão de ajuda para conteúdo sensível
+        function showAlertBox() {
+            alertBox.style.display = "block";
+        }
+
+        // Ação do botão "Contactar CVV"
+        function contactHelp() {
+            // Abre o site do CVV em uma nova aba
+            window.open("https://www.cvv.org.br", "_blank");
+        }
+
+        // Permite enviar mensagem com a tecla "Enter"
+        userInput.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>

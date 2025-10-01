@@ -1,0 +1,380 @@
+/* ========================================= */
+/* 1. RESET E ESTILOS GLOBAIS                */
+/* ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #dadde1;
+    color: #070055; /* Cor padrão do texto */
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    line-height: 1.6; /* Melhora a legibilidade */
+}
+
+/* ========================================= */
+/* 2. CABEÇALHO E NAVEGAÇÃO (HEADER)         */
+/* ========================================= */
+header {
+    background-color: #dadde1;
+    padding: 0 5%; /* Padding vertical removido, pois usaremos altura fixa */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    position: sticky; /* Menu fica fixo no topo ao rolar */
+    top: 0;
+    z-index: 100;
+    width: 100%;
+     height: 88px; /* << NOVO: Altura fixa para a barra de navegação */
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px; /* Limita a largura máxima */
+    margin: 0 auto;
+    flex-wrap: wrap; /* Permite que os itens quebrem linha em telas pequenas */
+}
+
+.navbar-left .logo img {
+    height: 150px;
+    position: absolute;
+    top: -30px; /* <<-- Altere este valor aqui */
+    left: 0;
+    transform: translateY(0); 
+}
+
+.navbar-center {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    flex-grow: 1; /* Permite que o centro ocupe o espaço disponível */
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #070055;
+    font-weight: bold;
+}
+
+.nav-item img {
+    height: 60px;
+    transition: transform 0.2s ease-in-out;
+    transform: translateY(7px); /* << Adicione esta linha (ajuste -5px) */
+    gap: 20px;
+}
+
+.nav-item:hover img {
+    transform: scale(1.15);
+}
+
+.nav-item span {
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.login-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif; /* Garante a herança da fonte */
+}
+
+.login-btn img {
+    height: 45px; /* Mesmo tamanho dos outros ícones */
+}
+
+/* ========================================= */
+/* 3. SEÇÃO INICIAL (WELCOME)                */
+/* ========================================= */
+.inicial {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 300px;
+    padding: 120px 5%;
+    flex-wrap: wrap;
+    text-align: center;
+    color: #ffffff;
+    /* Adicionei propriedades para a imagem de fundo funcionar melhor */
+    background: url('IMG/Captura de tela 2025-09-11 165116.png') no-repeat center center;
+    background-size: cover;
+}
+
+.welcome-text h2 {
+    font-size: 60px;
+    font-weight: 900;
+    line-height: 1.1;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.welcome-text p {
+    font-size: 20px;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: left;
+}
+
+.puzzle-image img {
+    max-width: 350px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* ========================================= */
+/* 4. SEÇÃO "A QUEM RECORRER"                */
+/* ========================================= */
+.recorrer {
+    padding: 80px 5%;
+    background-color: #dadde1;
+    text-align: center;
+    top: 10px;
+}
+
+.recorrer h2 {
+    font-size: 40px;
+    font-weight: 900;
+    margin-bottom: 10px;
+    color: #070055;
+}
+
+.recorrer .subtitulo {
+    font-size: 18px;
+    font-style: italic;
+    margin-bottom: 50px;
+    color: #333;
+}
+
+.cards-recorrer {
+    display: grid;
+    /* Grid responsivo: ajusta o número de colunas automaticamente */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.cards-recorrer .card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    text-align: left;
+    border-left: 8px solid #070055;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cards-recorrer .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.15);
+}
+
+.cards-recorrer .card h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.cards-recorrer .card p {
+    font-size: 15px;
+    color: #333;
+}
+/* ================================================================ */
+/* 5. SEÇÃO "O QUE VOCÊ DESEJA ACESSAR?" (VERSÃO COM CANTOS E CARDS AZUIS) */
+/* ================================================================ */
+.desejo {
+    padding: 80px 5%;
+    text-align: center;
+    position: relative; /* Essencial para posicionar os símbolos */
+    overflow: hidden; /* Garante que os símbolos não "vazem" */
+    background-color: #dadde1;
+}
+
+ /* Círculo decorativo no canto */
+        .decorative-circle {
+            position: fixed; /* Fixo na tela */
+            width: 300px;
+            height: 300px;
+            top: -80px;
+            left: -80px;
+            background: 
+                linear-gradient(45deg, #1E2A5C 50%, transparent 50%),
+                linear-gradient(-45deg, #00A99D 50%, transparent 50%);
+            border-radius: 50%;
+            z-index: -1; /* Fica atrás de todo o conteúdo */
+        }
+
+.desejo h3 {
+    font-size: 50px;
+    font-weight: 900;
+    color: #0b1a3c;
+    margin-bottom: 50px;
+    position: relative; /* Garante que o título fique na frente dos símbolos */
+    z-index: 1;
+}
+
+.pagina3 {
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* Aumentei o espaço entre os cards */
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+}
+
+/* ESTILO DOS CARDS AZUIS (COMO NA REFERÊNCIA) */
+.carde {
+    background: #0b1a3c;
+    border-radius: 20px; /* Cantos bem arredondados */
+    width: 260px;
+    padding: 15px; /* Espaçamento interno para a "borda" */
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.carde:hover {
+    transform: translateY(-8px);
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+.carde img {
+    width: 100%; /* A imagem ocupa todo o espaço interno (após o padding) */
+    height: 170px;
+    object-fit: cover;
+    border-radius: 12px; /* Cantos arredondados para a imagem */
+}
+
+.carde p {
+    padding: 20px 5px; /* Padding para o texto */
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    margin-top: auto;
+}
+/* ========================================= */
+/* 6. RODAPÉ (FOOTER)                        */
+/* ========================================= */
+footer {
+    background: #0b1a3c;
+    color: white;
+    padding: 25px 20px;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* ========================================= */
+/* 7. MODAL DE LOGIN                         */
+/* ========================================= */
+/* Mantive o seu CSS do modal, pois já estava bom */
+.modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgba(0,0,0,.6);justify-content:center;align-items:center}.modal-content{background-color:#fefefe;color:#333;padding:30px 40px;border-radius:10px;width:90%;max-width:400px;position:relative;animation:fadeIn .3s}@keyframes fadeIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}.close-btn{color:#aaa;position:absolute;top:10px;right:20px;font-size:28px;font-weight:bold;cursor:pointer}.close-btn:hover{color:#000}.modal-content h3{text-align:center;margin-bottom:25px;font-size:22px}.form-group{margin-bottom:20px}.form-group label{display:block;margin-bottom:5px;font-weight:bold;font-size:14px}.form-group input{width:100%;padding:10px;border:1px solid #ccc;border-radius:5px;font-size:16px}.submit-btn{width:100%;padding:12px;background-color:#0c104e;color:#fff;border:none;border-radius:5px;font-size:16px;font-weight:bold;cursor:pointer;transition:background-color .2s}.submit-btn:hover{background-color:#1a206d}
+
+/* ========================================= */
+/* 10. MEDIA QUERIES (RESPONSIVIDADE)        */
+/* ========================================= */
+
+/* Telas de tablets (até 992px) */
+@media (max-width: 992px) {
+    .navbar-center {
+        gap: 20px; /* Diminui o espaço entre os ícones */
+    }
+
+    .inicial {
+        gap: 100px; /* Diminui o espaço na seção inicial */
+        padding: 80px 5%;
+    }
+
+    .welcome-text h2 {
+        font-size: 50px;
+    }
+
+    .recorrer h2, .desejo h3 {
+        font-size: 36px;
+    }
+
+    .card-container {
+        gap: 20px;
+    }
+}
+
+/* Telas de celulares (até 768px) */
+@media (max-width: 768px) {
+    header {
+        height: auto; /* Altura automática para o cabeçalho */
+        padding: 15px 5%;
+    }
+    .navbar {
+        flex-direction: column; /* Itens da navbar em coluna */
+        gap: 20px;
+    }
+    .navbar-left .logo img {
+        position: static; /* Remove o posicionamento absoluto */
+        height: 90px;
+        transform: none;
+    }
+    .navbar-center {
+        order: 3; /* Muda a ordem para os ícones ficarem por último */
+        width: 100%;
+        justify-content: space-around;
+    }
+     .navbar-right {
+        order: 2;
+    }
+    .nav-item img {
+        height: 45px;
+        transform: none;
+    }
+
+    .inicial {
+        flex-direction: column; /* Coloca texto e imagem em coluna */
+        gap: 40px;
+        padding: 60px 5%;
+    }
+    .welcome-text h2 {
+        font-size: 42px;
+        text-align: center;
+    }
+     .welcome-text p {
+        text-align: center;
+    }
+    .puzzle-image img {
+        max-width: 280px;
+    }
+
+    .recorrer h2, .desejo h3 {
+        font-size: 32px;
+    }
+
+    .card-container {
+        flex-direction: column; /* Cards em coluna */
+        align-items: center;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .footer-distributed .footer-left,
+    .footer-distributed .footer-center,
+    .footer-distributed .footer-right {
+        width: 100%;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .footer-distributed .footer-icons {
+        justify-content: center;
+    }
+}

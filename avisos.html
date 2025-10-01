@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadro de Avisos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #E6EBF2; /* Cor de fundo da página */
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* --- CABEÇALHO --- */
+        header {
+            text-align: center;
+            color: #1E2A5C;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 4rem;
+            font-weight: 900; /* Extra-bold */
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        header p {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        /* --- LAYOUT PRINCIPAL (CALENDÁRIO + AVISOS) --- */
+        .main-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            width: 100%;
+            max-width: 1200px;
+            align-items: flex-start;
+        }
+
+        /* --- COLUNA ESQUERDA: CALENDÁRIO --- */
+        .calendar-section {
+            background-color: #1E2A5C; /* Fundo azul escuro */
+            border-radius: 20px;
+            padding: 30px;
+            color: white;
+            flex-basis: 450px; /* Largura base da seção do calendário */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .calendar-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 0 5px 0;
+            text-align: center;
+        }
+
+        .calendar-section .month {
+            font-size: 1.2rem;
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 25px;
+            color: #A9B4D5;
+            text-transform: uppercase;
+        }
+
+        .calendar-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        .calendar-table th {
+            padding-bottom: 15px;
+            font-weight: 700;
+            color: #A9B4D5;
+        }
+
+        .calendar-table td {
+            padding: 10px;
+            font-size: 1.1rem;
+        }
+        
+        /* Estilos para os dias destacados */
+        .day {
+            display: inline-flex;
+            width: 35px;
+            height: 35px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+        }
+
+        .day-dimmed {
+            color: #7683A3;
+        }
+        
+        .saturday-holiday { background-color: #00A99D; } /* Sábado Letivo */
+        .parent-meeting { background-color: #D93F4C; } /* Reunião de Pais */
+        .holiday { background-color: #D93F4C; } /* Feriado */
+        .test-week { background-color: #FFEB3B; color: #333; } /* Semana de Provas */
+        .exam-day { background-color: #9C27B0; } /* Semana de Provas (roxo) */
+
+
+        /* Legenda do Calendário */
+        .calendar-legend {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #4A5A8A;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .legend-color {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        /* --- COLUNA DIREITA: AVISOS --- */
+        .announcements-section {
+            flex-basis: 650px; /* Largura base da seção de avisos */
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .announcement-card {
+            background-color: #2F4A8A; /* Azul um pouco mais claro */
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .announcement-icon {
+            background-color: #E6EBF2;
+            color: #1E2A5C;
+            min-width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+        }
+
+        .announcement-text {
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        /* Círculo decorativo no canto */
+        .decorative-circle {
+            position: fixed; /* Fixo na tela */
+            width: 300px;
+            height: 300px;
+            top: -80px;
+            left: -80px;
+            background: 
+                linear-gradient(45deg, #1E2A5C 50%, transparent 50%),
+                linear-gradient(-45deg, #00A99D 50%, transparent 50%);
+            border-radius: 50%;
+            z-index: -1; /* Fica atrás de todo o conteúdo */
+        }
+ /* --- RESPONSIVIDADE --- */
+    @media (max-width: 992px) {
+        .main-container {
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+        .calendar-section {
+            flex-basis: 100%;
+            max-width: 500px;
+        }
+        .announcements-section {
+            flex-basis: 100%;
+            max-width: 500px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding: 20px;
+        }
+        header h1 {
+            font-size: 2.5rem;
+        }
+        header p {
+            font-size: 1.2rem;
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <div class="decorative-circle"></div>
+
+    <header>
+        <h1>Avisos</h1>
+        <p>Informações importantes serão fixadas aqui:</p>
+    </header>
+
+    <div class="main-container">
+        
+        <section class="calendar-section">
+            <h2>AGENDA MENSAL</h2>
+            <p class="month">OUTUBRO</p>
+            
+            <table class="calendar-table">
+                <thead>
+                    <tr>
+                        <th>D</th><th>S</th><th>T</th><th>Q</th><th>Q</th><th>S</th><th>S</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="day day-dimmed">28</span></td>
+                        <td><span class="day day-dimmed">29</span></td>
+                        <td><span class="day day-dimmed">30</span></td>
+                        <td><span class="day">1</span></td>
+                        <td><span class="day">2</span></td>
+                        <td><span class="day">3</span></td>
+                        <td><span class="day">4</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="day">5</span></td>
+                        <td><span class="day">6</span></td>
+                        <td><span class="day">7</span></td>
+                        <td><span class="day">8</span></td>
+                        <td><span class="day">9</span></td>
+                        <td><span class="day">10</span></td>
+                        <td><span class="day saturday-holiday">11</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="day holiday">12</span></td>
+                        <td><span class="day">13</span></td>
+                        <td><span class="day">14</span></td>
+                        <td><span class="day">15</span></td>
+                        <td><span class="day">16</span></td>
+                        <td><span class="day">17</span></td>
+                        <td><span class="day">18</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="day">19</span></td>
+                        <td><span class="day test-week">20</span></td>
+                        <td><span class="day test-week">21</span></td>
+                        <td><span class="day test-week">22</span></td>
+                        <td><span class="day">23</span></td>
+                        <td><span class="day test-week">24</span></td>
+                        <td><span class="day">25</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="day">26</span></td>
+                        <td><span class="day">27</span></td>
+                        <td><span class="day">28</span></td>
+                        <td><span class="day">29</span></td>
+                        <td><span class="day exam-day">30</span></td>
+                        <td><span class="day">31</span></td>
+                        <td><span class="day day-dimmed">1</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="calendar-legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #00A99D;"></div> Sábado Letivo
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #D93F4C;"></div> Feriado - Dia de Nossa Senhora Aparecida
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #D93F4C;"></div> Reunião de Pais
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: #9C27B0;"></div> Semana de Provas
+                </div>
+            </div>
+        </section>
+
+        <section class="announcements-section">
+            <div class="announcement-card">
+                <div class="announcement-icon"><i class="fa-regular fa-clock"></i></div>
+                <div class="announcement-text">
+                    Em virtude da reunião de pais, o horário de saída dos alunos no dia 30/10 foi alterado para 17:30.
+                </div>
+            </div>
+            <div class="announcement-card">
+                <div class="announcement-icon"><i class="fa-solid fa-book-open"></i></div>
+                <div class="announcement-text">
+                    Haverá Sábado Letivo dia 11/10 no horário de 07:00 às 11:30. Contamos com a participação de todos.
+                </div>
+            </div>
+            <div class="announcement-card">
+                <div class="announcement-icon"><i class="fa-solid fa-file-pen"></i></div>
+                <div class="announcement-text">
+                    As avaliações da 2ª chamada serão realizadas no dia 01/11 no horário das aulas.
+                </div>
+            </div>
+            <div class="announcement-card">
+                <div class="announcement-icon"><i class="fa-solid fa-file-pen"></i></div>
+                <div class="announcement-text">
+                    Aplicação de SIMULADO AVALIA SESI para as turmas do Ensino Médio no dia 15/10 e 16/10.
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>

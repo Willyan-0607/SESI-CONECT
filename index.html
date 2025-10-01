@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SESI Conect</title>
+    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+
+
+<body>
+    <header>
+        <div class="navbar">
+            <div class="navbar-left">
+                <a href="#" class="logo">
+                    <img src="IMG/updated_symbol_6.png" alt="Logo SESI Conect" />
+                </a>
+            </div>
+
+            <div class="navbar-center">
+                <a href="#inicial" class="nav-item">
+                    <img src="IMG/updated_symbol_5.png" alt="Home" />
+                    <span>Home</span>
+                </a>
+                <a href="#desejo" class="nav-item">
+                    <img src="IMG/image-Photoroom (28).png" alt="Acompanhar Alunos" />
+                    <span>Acompanhar Aluno</span>
+                </a>
+                <a href="chatbox.html" class="nav-item">
+                    <img src="IMG/updated_symbol_3.png" alt="Chat" />
+                    <span>ChatBox</span>
+                </a>
+                <a href="avisos.html" class="nav-item">
+                    <img src="IMG/updated_symbol_2.png" alt="Avisos" />
+                    <span>Avisos</span>
+                </a>
+            </div>
+
+            <div class="navbar-right">
+                <button id="loginBtn" class="login-btn nav-item">
+                    <img src="IMG/updated_symbol_1.png" alt="Login" />
+                    <span>Login</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="inicial" id="inicial">
+            <div class="welcome-text">
+                <h2>Seja bem-vindo<br>ao SESI Conect!</h2>
+                <p>Uma plataforma de comunicações que conecta<br>Escola - Família</p>
+            </div>
+            <div class="puzzle-image">
+                <img src="IMG/Captura de tela 2025-09-11 175641.png" alt="Quebra-cabeça conectando Família, Escola, Aluno e Professor">
+            </div>
+        </section>
+
+        <section class="recorrer">
+            <h2>A quem recorrer?</h2>
+            <p class="subtitulo">Situação/Problema</p>
+
+            <div class="cards-recorrer">
+                <div class="card">
+                    <h3>Dúvidas de desempenho</h3>
+                    <p>
+                        Se você deseja acompanhar as notas, entender melhor os trabalhos ou provas,
+                        ou conversar sobre o desempenho do estudante em determinada matéria,
+                        o <strong>professor da disciplina</strong> é o contato ideal. Ele poderá explicar os critérios
+                        de avaliação e orientar sobre como melhorar.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Questões Financeiras</h3>
+                    <p>
+                        Assuntos ligados a mensalidades, taxas, boletos ou renegociações devem ser tratados
+                        com a <strong>coordenação administrativa ou no Portal do Sesi.</strong> A secretaria é responsável
+                        por orientar sobre pagamentos e manter a regularidade financeira.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Questões Administrativas</h3>
+                    <p>
+                        Dúvidas relacionadas a matrículas, documentos, transferências ou horários
+                        devem ser tratadas diretamente com a <strong>secretaria escolar.</strong> Esse setor garante
+                        que toda a parte burocrática esteja em ordem.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Apoio e Inclusão</h3>
+                    <p>
+                        Alunos que precisam de apoio extra para inclusão, como adaptações pedagógicas
+                        ou acompanhamento especial, contam com o suporte da <strong>coordenação pedagógica e do psicólogo escolar.</strong>
+                        O objetivo é garantir que todos tenham acesso a um ambiente justo e acolhedor.
+                    </p>
+                </div>
+            </div>
+        </section>
+<hr style="height: 8px; background-color:#0b1a3c;">
+        <section class="desejo" id="desejo">
+     <div class="decorative-circle"></div>
+
+
+            <h3>O que você deseja acessar?</h3>
+
+            <div class="pagina3">
+                <a href="acompanhamento.html" class="carde">
+                    <img src="IMG/Captura de tela 2025-09-24 160742.png" alt="Acompanhamento do Aluno">
+                    <p>Acompanhamento do Aluno</p>
+                </a>
+
+                <a href="avisos.html" class="carde">
+                    <img src="IMG/Captura de tela 2025-09-24 160536.png">
+                    <p>Comunicação e Avisos</p>
+                </a>
+
+                <a href="chatbox.html" class="carde">
+                    <img src="IMG/Captura de tela 2025-09-24 160553.png" alt="Chat anônimo com Psicólogo">
+                    <p>ChatBox de Ajuda Psicológica</p>
+                </a>
+
+                <a href="denuncia.html" class="carde">
+                    <img src="IMG/Captura de tela 2025-09-24 160607.png" alt="Denunciar Bullying">
+                    <p>Denunciar Bullying</p>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <h3>Login do Aluno</h3>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="nome">Nome do Aluno</label>
+                    <input type="text" id="nome" name="nome" required />
+                </div>
+                <div class="form-group">
+                    <label for="matricula">Matrícula</label>
+                    <input type="text" id="matricula" name="matricula" required />
+                </div>
+                <div class="form-group">
+                    <label for="sala">Sala/Ano</label>
+                    <input type="text" id="sala" name="sala" required />
+                </div>
+                <button type="submit" class="submit-btn">Entrar</button>
+            </form>
+        </div>
+    </div>
+    
+    <footer>
+        © 2025 SESI Conect | Todos os direitos reservados<br>
+        Produzido por Glória Maria Silva Sousa e Willyam Jairo M. Da Silva
+    </footer>
+
+    <script>
+        const loginBtn = document.getElementById('loginBtn');
+        const loginModal = document.getElementById('loginModal');
+        const closeModal = document.getElementById('closeModal');
+        const loginForm = document.getElementById('loginForm');
+
+        // Abrir modal
+        loginBtn.addEventListener('click', () => {
+            loginModal.style.display = 'flex';
+        });
+
+        // Fechar modal
+        closeModal.addEventListener('click', () => {
+            loginModal.style.display = 'none';
+        });
+
+        // Fechar clicando fora do modal
+        window.addEventListener('click', (event) => {
+            if (event.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+        });
+
+        // Simular envio do formulário
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const nome = document.getElementById('nome').value;
+            const matricula = document.getElementById('matricula').value;
+            const sala = document.getElementById('sala').value;
+
+            alert(`Bem-vindo(a), ${nome}!\nMatrícula: ${matricula}\nSala/Ano: ${sala}`);
+
+            // Fecha o modal
+            loginModal.style.display = 'none';
+
+            // Aqui você poderia redirecionar ou armazenar os dados
+        });
+    </script>
+</body>
+</html>
